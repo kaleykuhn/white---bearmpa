@@ -10,9 +10,7 @@ class ReviewImagery extends React.Component {
    constructor(props) {
       super(props);
       axios
-         .get(
-            "https://raw.githubusercontent.com/kaleykuhn/white---bearmpa/master/src/mock-data/memory-cards.json"
-         )
+         .get("https://run.mocky.io/v3/44e2e361-358c-4843-b366-ce9701fdcdef")
          .then(function (res) {
             // handle success
             console.log(res);
