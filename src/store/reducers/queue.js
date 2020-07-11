@@ -1,7 +1,7 @@
 import actions from "../actions";
 
 export default function queue(queue = {}, action) {
-   //type & payload//
+   //type & payload///
    //action.payload, action.type
    let newQueue = { ...queue };
    switch (action.type) {
