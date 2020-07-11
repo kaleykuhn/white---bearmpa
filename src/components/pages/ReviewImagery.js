@@ -11,7 +11,7 @@ class ReviewImagery extends React.Component {
       super(props);
       axios
          .get(
-            "https://raw.githubusercontent.com/kaleykuhn/white-bear-mpa/master/src/mock-data/memory-cards.json"
+            "https://raw.githubusercontent.com/kaleykuhn/white---bearmpa/master/src/mock-data/memory-cards.json"
          )
          .then(function (res) {
             // handle success
