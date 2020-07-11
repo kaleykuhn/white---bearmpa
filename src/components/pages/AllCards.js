@@ -15,7 +15,7 @@ export default class Allcards extends React.Component {
       };
    }
 
-   // set order of filter
+   // set order of filter//
    filterByInput() {
       const input = document.getElementById("search-input").value;
       const lowerCasedInput = input.toLowerCase();
