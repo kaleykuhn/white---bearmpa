@@ -3,15 +3,22 @@ import thumbsUpIcon from "../../icons/thumbs-up.svg";
 import { connect } from "react-redux";
 import AppTemplate from "../ui/AppTemplate";
 import { Link } from "react-router-dom";
-
 import actions from "../../store/actions";
 
 class ReviewAnswer extends React.Component {
    gotoNextCard() {
-      //TODO: if index of current card = length of the array of all cards if we go to end of array
+      // if index of current card = length of the array of all cards if we go to end of array
       //Then show out of cards component
-      this.props.dispatch({ type: actions.UPDATE_INDEX_OF_CURRENT_CARD });
-      this.props.history.push("/review-imagery");
+      // If the index of queue is equal to cards length out of cards
+      // Then reset the queue with dispatch
+      if (this.props.queue.index === this.props.queue.cards.length - 1) {
+         console.log("we are out of cards.");
+         this.props.dispatch({ type: actions.RESET_QUEUE });
+         this.props.history.push("/review-empty");
+      } else {
+         this.props.dispatch({ type: actions.UPDATE_INDEX_OF_CURRENT_CARD });
+         this.props.history.push("/review-imagery");
+      }
    }
    render() {
       const memoryCard = this.props.queue.cards[this.props.queue.index];

@@ -9,25 +9,30 @@ import actions from "../../store/actions";
 class ReviewImagery extends React.Component {
    constructor(props) {
       super(props);
-      axios
-         .get("https://run.mocky.io/v3/44e2e361-358c-4843-b366-ce9701fdcdef")
-         .then(function (res) {
-            // handle success
-            console.log(res);
-            props.dispatch({
-               type: actions.STORE_QUEUED_CARDS,
-               payload: res.data,
+      console.log("Empty Array of queue cards");
+      if (props.queue.cards.length === 0) {
+         axios
+            .get(
+               "https://raw.githubusercontent.com/kaleykuhn/white---bearmpa/master/src/mock-data/memory-cards.json"
+            )
+            .then(function (res) {
+               // handle success
+               console.log(res);
+               props.dispatch({
+                  type: actions.STORE_QUEUED_CARDS,
+                  payload: res.data,
+               });
+            })
+            .catch(function (error) {
+               // handle error
+               console.log(error);
             });
-         })
-         .catch(function (error) {
-            // handle error
-            console.log(error);
-         });
-      /* 
-         queuedCards: [],
-         indexOfCurrentCard: 0,
-         currentUser : {}
-        */
+         /* 
+            queuedCards: [],
+            indexOfCurrentCard: 0,
+            currentUser : {}
+         */
+      }
    }
 
    render() {
