@@ -19,9 +19,7 @@ export default class Allcards extends React.Component {
 
    componentDidMount() {
       axios
-         .get(
-            "https://raw.githubusercontent.com/kaleykuhn/white---bearmpa/master/src/mock-data/memory-cards.json"
-         )
+         .get("https://run.mocky.io/v3/3a8e77cd-acb8-4941-a212-bb3f3817bcfd")
          .then((res) => {
             // handle success
             console.log(res.data);
