@@ -51,6 +51,16 @@ class Edit extends React.Component {
          isDeleteButtonDisplayed: !this.state.isDeleteButtonDisplayed,
       });
    }
+
+   deleteCard() {
+      //TODO: delete from database
+      if (this.props.editableCard.prevRoute === "/review-answer") {
+         this.deleteCardFromStore();
+      }
+      if (this.props.editableCard.prevRoute === "/all-cards") {
+         this.props.history.push("/all-cards");
+      }
+   }
    deleteCardFromStore() {
       const deletedCard = this.props.editableCard.card;
       const cards = this.props.queue.cards;
@@ -231,7 +241,7 @@ class Edit extends React.Component {
                         className=" btn btn-lg btn-outline-danger my-4"
                         id="delete-button"
                         onClick={() => {
-                           this.deleteCardFromStore();
+                           this.deleteCard();
                         }}
                      >
                         Delete this card
