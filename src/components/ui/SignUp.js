@@ -4,6 +4,9 @@ import hash from "object-hash";
 import { v4 as getUUid } from "uuid";
 import { withRouter } from "react-router-dom";
 import { EMAIL_REGEX } from "../../utils/helpers";
+import axios from "axios";
+import actions from "../../store/actions";
+import { connect } from "react-redux";
 
 class SignUp extends React.Component {
    constructor(props) {
@@ -113,7 +116,27 @@ class SignUp extends React.Component {
             password: hash(passwordInput),
             createdAt: Date.now(),
          };
-         console.log("Valid!!!!", user);
+         console.log("Created user object for POST:", user);
+
+         // Mimic API response:
+         axios
+            .get(
+               "https://raw.githubusercontent.com/kaleykuhn/white---bearmpa/master/src/mock-data/user.json"
+            )
+            .then((res) => {
+               // handle success
+               const currentUser = res.data;
+               console.log(currentUser);
+               this.props.dispatch({
+                  type: actions.UPDATE_CURRENT_USER,
+                  payload: res.data,
+               });
+            })
+            .catch((error) => {
+               // handle error
+               console.log(error);
+            });
+
          this.props.history.push("/create-answer");
       }
    }
@@ -210,4 +233,8 @@ class SignUp extends React.Component {
       );
    }
 }
-export default withRouter(SignUp);
+
+function mapStateToProps(state) {
+   return {};
+}
+export default withRouter(connect(mapStateToProps)(SignUp));
